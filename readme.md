@@ -2,6 +2,14 @@
 
 This is a simple nova field type to introduce a radio button.
 
+## Form View
+
+![index view](https://i.imgur.com/XORtlDE.png)
+
+## Index View
+
+![form view](https://i.imgur.com/F9Dof4z.png)
+
 ## Installation
 
 `composer require owenmelbz/nova-radio-field`
