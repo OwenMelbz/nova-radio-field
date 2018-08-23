@@ -1,28 +1,11 @@
-<old-template>
-    <default-field :field="field">
-        <template slot="field">
-            <input :id="field.name" type="text"
-                class="w-full form-control form-input form-input-bordered"
-                :class="errorClasses"
-                :placeholder="field.name"
-                v-model="value"
-            />
-
-            <p v-if="hasError" class="my-2 text-danger">
-                {{ firstError }}
-            </p>
-        </template>
-    </default-field>
-</old-template>
-
 <template>
-    <default-field :field="field">
+    <default-field :field="field" ref="row">
         <template slot="field">
 
-            <div class="flex flex-wrap">
-                <div class="radio-container mb-2" v-for="(option, value) in field.options">
-                    <label :for="`${fieldAttribute}_${value}`">
-                        <input v-model="value" :value="value" :id="`${fieldAttribute}_${value}`" :name="fieldAttribute" type="radio">
+            <div :class="{'flex flex-wrap' : !field.stack}">
+                <div class="radio-container" :class="{'mb-2' : field.stack || field.addPadding}" v-for="(option, val) in field.options">
+                    <label :for="`${field.attribute}_${val}`">
+                        <input v-model="value" :value="val" :id="`${field.attribute}_${val}`" :name="field.attribute" type="radio">
                         <span class="radio-label">{{ option }}</span>
                     </label>
                 </div>
@@ -46,10 +29,8 @@ export default {
 
     props: ['resourceName', 'resourceId', 'field'],
 
-    data() {
-        return {
-            value: this.field.default
-        }
+    mounted() {
+        !this.stacked && this.fixAlignment();
     },
 
     methods: {
@@ -57,21 +38,21 @@ export default {
          * Set the initial, internal value for the field.
          */
         setInitialValue() {
-          this.value = this.field.value || ''
+          this.value = this.field.value || this.field.default;
         },
 
         /**
          * Fill the given FormData object with the field's internal value.
          */
         fill(formData) {
-          formData.append(this.field.attribute, this.value || '')
+          formData.append(this.field.attribute, this.value || this.field.default)
         },
 
-        /**
-         * Update the field's internal value.
-         */
-        handleChange(value) {
-          this.value = value
+        fixAlignment() {
+            const container = this.$refs.row.$el.lastChild;
+
+            container.classList.add('flex');
+            container.classList.add('items-center');
         }
     }
 }
