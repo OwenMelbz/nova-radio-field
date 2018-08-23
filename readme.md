@@ -4,11 +4,11 @@ This is a simple nova field type to introduce a radio button.
 
 ## Form View
 
-![index view](https://i.imgur.com/XORtlDE.png)
+![index view](https://i.imgur.com/GbErvLG.png)
 
 ## Index View
 
-![form view](https://i.imgur.com/F9Dof4z.png)
+![form view](https://i.imgur.com/RKSc4xj.png)
 
 ## Installation
 
