@@ -1,0 +1,29 @@
+{
+    "name": "owenmelbz/nova-radio-field",
+    "description": "A Laravel Nova radio field.",
+    "keywords": [
+        "laravel",
+        "nova"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "OwenMelbz\\RadioField\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "OwenMelbz\\RadioField\\FieldServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
