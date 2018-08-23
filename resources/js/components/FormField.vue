@@ -40,7 +40,15 @@
              * Set the initial, internal value for the field.
              */
             setInitialValue() {
-                this.value = this.field.value || this.field.default;
+                if (this.value) {
+                    return;
+                }
+
+                if (this.field.value !== null) {
+                    return this.value = this.field.value;
+                }
+
+                return this.value = this.field.default;
             },
 
             /**

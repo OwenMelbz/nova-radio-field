@@ -3,6 +3,7 @@
 namespace OwenMelbz\RadioField;
 
 use Laravel\Nova\Fields\Field;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class RadioButton extends Field
 {
@@ -84,4 +85,5 @@ class RadioButton extends Field
 
         return $this;
     }
+
 }
