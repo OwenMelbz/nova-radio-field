@@ -9,7 +9,7 @@
         </div>
         <div class="w-3/4 py-4">
             <slot name="value">
-                <p class="text-90">{{ value }}</p>
+                <p class="text-90" :title="this.field.value" :aria-label="this.field.value">{{ value }}</p>
             </slot>
         </div>
     </div>

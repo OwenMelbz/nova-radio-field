@@ -1,5 +1,5 @@
 <template>
-    <div>{{ value }}</div>
+    <div :title="this.field.value" :aria-label="this.field.value">{{ value }}</div>
 </template>
 
 <script>
