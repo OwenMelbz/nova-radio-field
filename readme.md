@@ -25,11 +25,11 @@ public function fields(Request $request)
     return [
         RadioButton::make('Can view skip adverts')
             ->options([
-                0 => ['No'],
-                1 => ['Yes','This means that users will not have to watch adverts'],
+                0 => 'No',
+                1 => ['Yes' => 'This means that users will not have to watch adverts.'],
             ])
             ->default(0) // optional
-            ->stack() // optional
+            ->stack() // optional (required to show hints)
             ->marginBetween() // optional
             ->skipTransformation() // optional
     ];
@@ -42,6 +42,10 @@ public function fields(Request $request)
 ### options()
 
 This accepts basic string/integer key-pair values. The key of the array will be saved in the database, and the value will be displayed.
+
+If you assign an array to the value, it will act as a key-pair for a label and a hint.
+
+![hint view](https://i.imgur.com/N8ajaQE.jpg)
 
 ### default()
 

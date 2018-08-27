@@ -3,13 +3,11 @@
         <template slot="field">
 
             <div :class="{'flex flex-wrap' : !field.stack}">
-                <div class="radio-container" :class="{'mb-2' : field.stack || field.addPadding}"
-                     v-for="(option, val) in field.options">
+                <div v-for="(option, val) in field.options" :class="{'mb-2' : field.stack || field.addPadding}"  class="radio-container">
                     <label :for="`${field.attribute}_${val}`">
-                        <input v-model="value" :value="val" :id="`${field.attribute}_${val}`" :name="field.attribute"
-                               type="radio">
-                        <span class="radio-label">{{ option[0] }}</span>
-                        <span class="radio-helper form-field" v-if="field.stack && option[1]">{{ option[1] }}</span>
+                        <input v-model="value" :value="val" :id="`${field.attribute}_${val}`" :name="field.attribute" type="radio">
+                        <span class="radio-label">{{ getOptionLabel(option) }}</span>
+                        <span v-if="field.stack && hasOptionHint(option)" class="radio-hint mt-1 block text-sm text-80 leading-normal">{{ getOptionHint(option) }}</span>
                     </label>
                 </div>
             </div>
@@ -69,6 +67,35 @@
 
                 container.classList.add('flex');
                 container.classList.add('items-center');
+            },
+
+            /**
+            * Just determins if the option could potentially have an option.
+            */
+            hasOptionHint(option) {
+                return typeof option === 'object';
+            },
+
+            /**
+            * Returns back an option if one is found, otherwise void.
+            */
+            getOptionHint(option) {
+                if (this.hasOptionHint(option)) {
+                    return option[
+                        Object.keys(option).shift()
+                    ];
+                }
+            },
+
+            /**
+            * Returns back the label of the option.
+            */
+            getOptionLabel(option) {
+                if (this.hasOptionHint(option)) {
+                    return Object.keys(option).shift();
+                }
+
+                return option;
             }
         }
     }
@@ -81,5 +108,9 @@
 
     .radio-label {
         padding-left: 5px;
+    }
+
+    .radio-hint {
+        padding-left: 24px;
     }
 </style>
