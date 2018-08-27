@@ -25,8 +25,8 @@ public function fields(Request $request)
     return [
         RadioButton::make('Can view skip adverts')
             ->options([
-                0 => 'No',
-                1 => 'Yes',
+                0 => ['No'],
+                1 => ['Yes','This means that users will not have to watch adverts'],
             ])
             ->default(0) // optional
             ->stack() // optional
