@@ -9,7 +9,8 @@
         </div>
         <div class="w-3/4 py-4">
             <slot name="value">
-                <p class="text-90" :title="this.field.value" :aria-label="this.field.value">{{ value }}</p>
+                <p class="text-90" :title="this.field.value" :aria-label="this.field.value">{{ value[0] }}</p>
+                <span class="radio-helper" v-if="value[1]">{{ value[1] }}</span>
             </slot>
         </div>
     </div>

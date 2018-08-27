@@ -8,7 +8,8 @@
                     <label :for="`${field.attribute}_${val}`">
                         <input v-model="value" :value="val" :id="`${field.attribute}_${val}`" :name="field.attribute"
                                type="radio">
-                        <span class="radio-label">{{ option }}</span>
+                        <span class="radio-label">{{ option[0] }}</span>
+                        <span class="radio-helper form-field" v-if="field.stack && option[1]">{{ option[1] }}</span>
                     </label>
                 </div>
             </div>
