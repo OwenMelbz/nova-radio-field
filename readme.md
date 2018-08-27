@@ -43,7 +43,7 @@ public function fields(Request $request)
 
 This accepts basic string/integer key-pair values. The key of the array will be saved in the database, and the value will be displayed.
 
-If you assign an array to the value, it will act as a key-pair for a label and a hint.
+If you assign an array to the value, it will act as a key-pair for a label and a hint when using `stack()`
 
 ![hint view](https://i.imgur.com/N8ajaQE.jpg)
 
