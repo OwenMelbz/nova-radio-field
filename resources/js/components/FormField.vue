@@ -9,7 +9,6 @@
                         <input v-model="value" :value="val" :id="`${field.attribute}_${val}`" :name="field.attribute"
                                type="radio">
                         <span class="radio-label">{{ option[0] }}</span>
-                        <br>
                         <span class="radio-helper">{{ option[1] }}</span>
                     </label>
                 </div>
