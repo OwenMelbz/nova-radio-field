@@ -9,8 +9,8 @@
         </div>
         <div class="w-3/4 py-4">
             <slot name="value">
-                <p class="text-90" :title="this.field.value" :aria-label="this.field.value">{{ value[0] }}</p>
-                <span class="radio-helper" v-if="value[1]">{{ value[1] }}</span>
+                <p class="text-90" :title="this.field.value" :aria-label="this.field.value">{{ getOptionLabel(value) }}</p>
+                <span v-if="field.stack && hasOptionHint(value)" class="radio-hint mt-1 block text-sm text-80 leading-normal">{{ getOptionHint(value) }}</span>
             </slot>
         </div>
     </div>
@@ -44,6 +44,35 @@
                 }
 
                 return this.field.default;
+            }
+        },
+        methods: {
+            /**
+            * Just determins if the option could potentially have an option.
+            */
+            hasOptionHint(option) {
+                return typeof option === 'object';
+            },
+
+            /**
+            * Returns back an option if one is found, otherwise void.
+            */
+            getOptionHint(option) {
+                if (this.hasOptionHint(option)) {
+                    return option[
+                        Object.keys(option).shift()
+                    ];
+                }
+            },
+            
+            /**
+            * Returns back the label of the option.
+            */
+            getOptionLabel(option) {
+                if (this.hasOptionHint(option)) {
+                    return Object.keys(option).shift();
+                }
+                return option;
             }
         },
     }
