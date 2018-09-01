@@ -1,6 +1,6 @@
 {
     "name": "owenmelbz/nova-radio-field",
-    "description": "A Laravel Nova radio field.",
+    "description": "A Laravel Nova radio button field type with the ability to toggle other field visibility.",
     "keywords": [
         "laravel",
         "nova"
