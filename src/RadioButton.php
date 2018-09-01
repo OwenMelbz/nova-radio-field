@@ -86,4 +86,15 @@ class RadioButton extends Field
         return $this;
     }
 
+    /**
+     * @param array $fields
+     * @return RadioField
+     */
+    public function hideFieldsWhen(array $fields = [])
+    {
+        $this->withMeta(['toggle' => $fields]);
+
+        return $this;
+    }
+
 }

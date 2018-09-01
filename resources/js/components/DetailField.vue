@@ -18,15 +18,19 @@
 
 <script>
     import HasOptions from '../mixins/HasOptions';
+    import CanToggle from '../mixins/CanToggle';
 
     export default {
-        mixins: [HasOptions],
+        mixins: [HasOptions, CanToggle],
 
         props: ['field', 'fieldName'],
 
         computed: {
             label() {
                 return this.fieldName || this.field.name
+            },
+            rawValue() {
+                return this.field.value;
             },
             value() {
                 if (this.field.skipTransformation) {
@@ -44,3 +48,9 @@
         },
     }
 </script>
+
+<style>
+    .mlbz-hidden {
+        display: none !important;
+    }
+</style>

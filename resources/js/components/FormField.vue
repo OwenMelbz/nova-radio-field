@@ -3,11 +3,11 @@
         <template slot="field">
 
             <div :class="{'flex flex-wrap' : !field.stack}">
-                <div v-for="(option, val) in field.options" :class="{'mb-2' : field.stack || field.addPadding}"  class="radio-container">
+                <div v-for="(option, val) in field.options" :class="{'mb-2' : field.stack || field.addPadding}"  class="mlbz-radio-container">
                     <label :for="`${field.attribute}_${val}`">
                         <input v-model="value" :value="val" :id="`${field.attribute}_${val}`" :name="field.attribute" type="radio">
-                        <span class="radio-label">{{ getOptionLabel(option) }}</span>
-                        <span v-if="field.stack && hasOptionHint(option)" class="radio-hint mt-1 block text-sm text-80 leading-normal">{{ getOptionHint(option) }}</span>
+                        <span class="mblz-radio-label">{{ getOptionLabel(option) }}</span>
+                        <span v-if="field.stack && hasOptionHint(option)" class="mlbz-radio-hint mt-1 block text-sm text-80 leading-normal">{{ getOptionHint(option) }}</span>
                     </label>
                 </div>
             </div>
@@ -24,15 +24,22 @@
 
 <script>
     import HasOptions from '../mixins/HasOptions';
+    import CanToggle from '../mixins/CanToggle';
     import {FormField, HandlesValidationErrors} from 'laravel-nova';
 
     export default {
-        mixins: [FormField, HandlesValidationErrors, HasOptions],
+        mixins: [FormField, HandlesValidationErrors, HasOptions, CanToggle],
 
         props: ['resourceName', 'resourceId', 'field'],
 
         mounted() {
             !this.stacked && this.fixAlignment();
+        },
+
+        computed: {
+            rawValue() {
+                return this.value;
+            }
         },
 
         methods: {
@@ -74,16 +81,20 @@
     }
 </script>
 
-<style scoped>
-    .radio-container:not(:last-child) {
+<style>
+    .mlbz-radio-container:not(:last-child) {
         margin-right: 20px;
     }
 
-    .radio-label {
+    .mlbz-radio-label {
         padding-left: 5px;
     }
 
-    .radio-hint {
+    .mlbz-radio-hint {
         padding-left: 24px;
+    }
+
+    .mlbz-hidden {
+        display: none !important;
     }
 </style>
