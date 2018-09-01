@@ -87,10 +87,18 @@ class RadioButton extends Field
     }
 
     /**
+     * This accepts an array of values, of which the key
+     * represents the models value, and the value of the entry
+     * is an array of fields which you wish to hide, when the value is of that.
+     *
+     * [
+     *     1 => ['email'] // when the value is 1, it will hide the email field.
+     * ]
+     *
      * @param array $fields
      * @return RadioField
      */
-    public function hideFieldsWhen(array $fields = [])
+    public function toggle(array $fields = [])
     {
         $this->withMeta(['toggle' => $fields]);
 

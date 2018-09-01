@@ -2,7 +2,9 @@ import _ from 'lodash';
 
 export default {
     mounted() {
-        if (this.field.toggle && _.toArray(this.field.toggle).length) {
+        this.toggleEnabled = this.field.toggle && _.toArray(this.field.toggle).length;
+
+        if (this.toggleEnabled) {
             this.mapFields();
             this.calculateFieldVisibility();
         }
@@ -12,6 +14,7 @@ export default {
     },
     data() {
         return {
+            toggleEnabled: false,
             toggleFields: {},
         }
     },
@@ -43,7 +46,7 @@ export default {
         },
         calculateFieldVisibility() {
             this.resetVisibility();
-            console.log(this.rawValue)
+
             const fields = this.field.toggle[this.rawValue];
 
             (fields || []).forEach(field => {
@@ -55,7 +58,7 @@ export default {
     },
     watch: {
         value() {
-            return this.calculateFieldVisibility();
+            return this.toggleEnabled && this.calculateFieldVisibility();
         }
     }
 }
