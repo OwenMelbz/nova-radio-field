@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -174,32 +174,72 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-__webpack_require__(2);
-module.exports = __webpack_require__(18);
+"use strict";
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+/* harmony default export */ __webpack_exports__["a"] = (HasOptions = {
+    methods: {
+        /**
+         * Just determins if the option could potentially have an option.
+         */
+        hasOptionHint: function hasOptionHint(option) {
+            return (typeof option === 'undefined' ? 'undefined' : _typeof(option)) === 'object';
+        },
+
+
+        /**
+         * Returns back an option if one is found, otherwise void.
+         */
+        getOptionHint: function getOptionHint(option) {
+            if (this.hasOptionHint(option)) {
+                return option[Object.keys(option).shift()];
+            }
+        },
+
+
+        /**
+         * Returns back the label of the option.
+         */
+        getOptionLabel: function getOptionLabel(option) {
+            if (this.hasOptionHint(option)) {
+                return Object.keys(option).shift();
+            }
+
+            return option;
+        }
+    }
+});
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-Nova.booting(function (Vue, router) {
-    Vue.component('index-radio-field', __webpack_require__(3));
-    Vue.component('detail-radio-field', __webpack_require__(6));
-    Vue.component('form-radio-field', __webpack_require__(9));
-});
+__webpack_require__(3);
+module.exports = __webpack_require__(19);
+
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
+Nova.booting(function (Vue, router) {
+    Vue.component('index-radio-field', __webpack_require__(4));
+    Vue.component('detail-radio-field', __webpack_require__(7));
+    Vue.component('form-radio-field', __webpack_require__(10));
+});
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(4)
+var __vue_script__ = __webpack_require__(5)
 /* template */
-var __vue_template__ = __webpack_require__(5)
+var __vue_template__ = __webpack_require__(6)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -238,18 +278,24 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_HasOptions__ = __webpack_require__(1);
 //
 //
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_HasOptions__["a" /* default */]],
+
     props: ['resourceName', 'field'],
+
     computed: {
         value: function value() {
             if (this.field.skipTransformation) {
@@ -268,7 +314,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -278,7 +324,7 @@ var render = function() {
   return _c(
     "div",
     { attrs: { title: this.field.value, "aria-label": this.field.value } },
-    [_vm._v(_vm._s(_vm.value[0]))]
+    [_vm._v(_vm._s(_vm.getOptionLabel(_vm.value)))]
   )
 }
 var staticRenderFns = []
@@ -292,15 +338,15 @@ if (false) {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(7)
+var __vue_script__ = __webpack_require__(8)
 /* template */
-var __vue_template__ = __webpack_require__(8)
+var __vue_template__ = __webpack_require__(9)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -339,11 +385,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_HasOptions__ = __webpack_require__(1);
 //
 //
 //
@@ -363,17 +410,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        field: {
-            type: Object,
-            required: true
-        },
-        fieldName: {
-            type: String,
-            default: ''
-        }
-    },
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_HasOptions__["a" /* default */]],
+
+    props: ['field', 'fieldName'],
+
     computed: {
         label: function label() {
             return this.fieldName || this.field.name;
@@ -395,7 +438,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -427,13 +470,18 @@ var render = function() {
               staticClass: "text-90",
               attrs: { title: this.field.value, "aria-label": this.field.value }
             },
-            [_vm._v(_vm._s(_vm.value[0]))]
+            [_vm._v(_vm._s(_vm.getOptionLabel(_vm.value)))]
           ),
           _vm._v(" "),
-          _vm.value[1]
-            ? _c("span", { staticClass: "radio-helper" }, [
-                _vm._v(_vm._s(_vm.value[1]))
-              ])
+          _vm.field.stack && _vm.hasOptionHint(_vm.value)
+            ? _c(
+                "span",
+                {
+                  staticClass:
+                    "radio-hint mt-1 block text-sm text-80 leading-normal"
+                },
+                [_vm._v(_vm._s(_vm.getOptionHint(_vm.value)))]
+              )
             : _vm._e()
         ])
       ],
@@ -452,19 +500,19 @@ if (false) {
 }
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(10)
+  __webpack_require__(11)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(15)
+var __vue_script__ = __webpack_require__(16)
 /* template */
-var __vue_template__ = __webpack_require__(17)
+var __vue_template__ = __webpack_require__(18)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -503,17 +551,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(11);
+var content = __webpack_require__(12);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(13)("48e4f680", content, false, {});
+var update = __webpack_require__(14)("48e4f680", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -529,10 +577,10 @@ if(false) {
 }
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(12)(false);
+exports = module.exports = __webpack_require__(13)(false);
 // imports
 
 
@@ -543,7 +591,7 @@ exports.push([module.i, "\n.radio-container[data-v-c023248a]:not(:last-child) {\
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 /*
@@ -625,7 +673,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -644,7 +692,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(14)
+var listToStyles = __webpack_require__(15)
 
 /*
 type StyleObject = {
@@ -853,7 +901,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 /**
@@ -886,44 +934,44 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_nova__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_nova___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_laravel_nova__);
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_HasOptions__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_laravel_nova__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_laravel_nova___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_laravel_nova__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mixins: [__WEBPACK_IMPORTED_MODULE_0_laravel_nova__["FormField"], __WEBPACK_IMPORTED_MODULE_0_laravel_nova__["HandlesValidationErrors"]],
+    mixins: [__WEBPACK_IMPORTED_MODULE_1_laravel_nova__["FormField"], __WEBPACK_IMPORTED_MODULE_1_laravel_nova__["HandlesValidationErrors"], __WEBPACK_IMPORTED_MODULE_0__mixins_HasOptions__["a" /* default */]],
 
     props: ['resourceName', 'resourceId', 'field'],
 
@@ -967,42 +1015,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             container.classList.add('flex');
             container.classList.add('items-center');
-        },
-
-
-        /**
-        * Just determins if the option could potentially have an option.
-        */
-        hasOptionHint: function hasOptionHint(option) {
-            return (typeof option === 'undefined' ? 'undefined' : _typeof(option)) === 'object';
-        },
-
-
-        /**
-        * Returns back an option if one is found, otherwise void.
-        */
-        getOptionHint: function getOptionHint(option) {
-            if (this.hasOptionHint(option)) {
-                return option[Object.keys(option).shift()];
-            }
-        },
-
-
-        /**
-        * Returns back the label of the option.
-        */
-        getOptionLabel: function getOptionLabel(option) {
-            if (this.hasOptionHint(option)) {
-                return Object.keys(option).shift();
-            }
-
-            return option;
         }
     }
 });
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -11131,7 +11149,7 @@ module.exports = g;
 });
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -11228,7 +11246,7 @@ if (false) {
 }
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
