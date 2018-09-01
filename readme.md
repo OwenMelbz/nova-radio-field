@@ -12,7 +12,7 @@ This is a simple nova field type to introduce a radio button with the ability to
 
 ## Toggle Mode
 
-![toggle mode](https://i.imgur.com/5Xwit3c.gifv)
+![toggle mode](https://i.imgur.com/5Xwit3c.gif)
 
 ## Installation
 
