@@ -1,4 +1,4 @@
-export default HasOptions = {
+export default {
     methods: {
         /**
          * Just determins if the option could potentially have an option.
@@ -14,7 +14,7 @@ export default HasOptions = {
             if (this.hasOptionHint(option)) {
                 return option[
                     Object.keys(option).shift()
-                    ];
+                ];
             }
         },
 

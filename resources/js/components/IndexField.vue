@@ -1,5 +1,5 @@
 <template>
-    <div :title="this.field.value" :aria-label="this.field.value">{{ getOptionLabel(value) }}</div>
+    <div :title="this.field.value" :aria-label="this.field.value">{{ value }}</div>
 </template>
 
 <script>
@@ -19,7 +19,9 @@
                 const displayValue = this.field.options[this.field.value];
 
                 if (displayValue) {
-                    return displayValue
+                    return this.getOptionLabel(
+                        displayValue
+                    );
                 }
 
                 return this.field.default;
