@@ -1,5 +1,5 @@
 <template>
-    <div :title="this.field.value" :aria-label="this.field.value">{{ value[0] }}</div>
+    <div :title="this.field.value" :aria-label="this.field.value">{{ getOptionLabel(value) }}</div>
 </template>
 
 <script>
@@ -20,5 +20,24 @@ export default {
             return this.field.default;
         }
     },
+    
+    methods: {
+        /**
+        * Just determins if the option could potentially have an option.
+        */
+        hasOptionHint(option) {
+            return typeof option === 'object';
+        },
+        
+        /**
+        * Returns back an option if one is found, otherwise void.
+        */
+        getOptionLabel(option) {
+            if (this.hasOptionHint(option)) {
+                return Object.keys(option).shift();
+            }
+            return option;
+        }
+    }
 }
 </script>
