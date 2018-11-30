@@ -6,7 +6,7 @@
                 <div v-for="(option, val) in field.options" :class="{'mb-2' : field.stack || field.addPadding}"  class="mlbz-radio-container">
                     <label :for="`${field.attribute}_${val}`">
                         <input v-model="value" :value="val" :id="`${field.attribute}_${val}`" :name="field.attribute" type="radio">
-                        <span class="mblz-radio-label">{{ getOptionLabel(option) }}</span>
+                        <span class="mlbz-radio-label">{{ getOptionLabel(option) }}</span>
                         <span v-if="field.stack && hasOptionHint(option)" class="mlbz-radio-hint mt-1 block text-sm text-80 leading-normal">{{ getOptionHint(option) }}</span>
                     </label>
                 </div>
