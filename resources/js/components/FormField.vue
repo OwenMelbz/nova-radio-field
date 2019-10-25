@@ -2,7 +2,7 @@
     <default-field :field="field" ref="row">
         <template slot="field">
 
-            <div :class="{'flex flex-wrap' : !field.stack}">
+            <div :class="{'flex flex-wrap' : !field.stack, 'border-danger': hasError}">
                 <div v-for="(option, val) in field.options" :class="{'mb-2' : field.stack || field.addPadding}"  class="mlbz-radio-container">
                     <label :for="`${field.attribute}_${val}`">
                         <input v-model="value" :value="val" :id="`${field.attribute}_${val}`" :name="field.attribute" type="radio">
