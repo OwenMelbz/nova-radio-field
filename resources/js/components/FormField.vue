@@ -49,7 +49,11 @@
                     return this.value = this.field.value;
                 }
 
-                return this.value = this.field.default;
+				if (this.field.hasOwnProperty('default')) {
+					return this.value = this.field.default;
+				}
+
+				return this.value = ''
             },
 
             /**
