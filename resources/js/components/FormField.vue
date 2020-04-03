@@ -1,5 +1,5 @@
 <template>
-    <default-field :field="field" ref="row">
+    <default-field :field="field" ref="row ":errors="errors">
         <template slot="field">
 
             <div :class="{'flex flex-wrap' : !field.stack, 'border-danger': hasError}">
@@ -10,12 +10,6 @@
                         <span v-if="field.stack && hasOptionHint(option)" class="mlbz-radio-hint mt-1 block text-sm text-80 leading-normal">{{ getOptionHint(option) }}</span>
                     </label>
                 </div>
-            </div>
-
-            <div v-if="hasError">
-                <p class="my-2 text-danger">
-                    {{ firstError }}
-                </p>
             </div>
 
         </template>
