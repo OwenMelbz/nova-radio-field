@@ -61,11 +61,12 @@ class RadioButton extends Field
 
 
     /**
+     * @param bool $status
      * @return $this
      */
-    public function disabled()
+    public function disabled($status = true)
     {
-        $this->withMeta(['disabled' => true]);
+        $this->withMeta(['disabled' => $status]);
 
         return $this;
     }
