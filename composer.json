@@ -1,5 +1,5 @@
 {
-    "name": "owenmelbz/nova-radio-field",
+    "name": "lifeblood/nova-radio-field",
     "description": "A Laravel Nova radio button field type with the ability to toggle other field visibility.",
     "keywords": [
         "laravel",
@@ -11,13 +11,13 @@
     },
     "autoload": {
         "psr-4": {
-            "OwenMelbz\\RadioField\\": "src/"
+            "lifeblood\\RadioField\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "OwenMelbz\\RadioField\\FieldServiceProvider"
+                "lifeblood\\RadioField\\FieldServiceProvider"
             ]
         }
     },

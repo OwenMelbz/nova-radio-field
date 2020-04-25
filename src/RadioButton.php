@@ -1,6 +1,6 @@
 <?php
 
-namespace OwenMelbz\RadioField;
+namespace lifeblood\RadioField;
 
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -55,6 +55,17 @@ class RadioButton extends Field
     public function stack()
     {
         $this->withMeta(['stack' => true]);
+
+        return $this;
+    }
+
+
+    /**
+     * @return $this
+     */
+    public function disabled()
+    {
+        $this->withMeta(['disabled' => true]);
 
         return $this;
     }

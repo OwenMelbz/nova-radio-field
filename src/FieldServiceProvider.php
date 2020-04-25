@@ -1,6 +1,6 @@
 <?php
 
-namespace OwenMelbz\RadioField;
+namespace lifeblood\RadioField;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;
