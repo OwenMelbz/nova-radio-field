@@ -70,6 +70,10 @@ toggle([
 
 This lets you set the default radio button, otherwise none will be selected - You just pass in the value of the key, e.g 0
 
+### disabled($status=true)
+
+This lets you st the disabled radio button, otherwise none will be disabled 
+
 ### stack()
 
 By default the radios will sit next to each other, if you want them underneath in a longer list call the `stack()` method
