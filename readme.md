@@ -16,7 +16,7 @@ This is a simple nova field type to introduce a radio button with the ability to
 
 ## Installation
 
-`composer require owenmelbz/nova-radio-field`
+`composer require lifeblood/nova-radio-field`
 
 ## Usage
 
