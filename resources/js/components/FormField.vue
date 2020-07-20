@@ -1,5 +1,5 @@
 <template>
-    <default-field :field="field" ref="row">
+    <default-field :field="field" :errors="errors">
         <template slot="field">
 
             <div :class="{'flex flex-wrap' : !field.stack, 'border-danger': hasError}">
@@ -10,12 +10,6 @@
                         <span v-if="field.stack && hasOptionHint(option)" class="mlbz-radio-hint mt-1 block text-sm text-80 leading-normal">{{ getOptionHint(option) }}</span>
                     </label>
                 </div>
-            </div>
-
-            <div v-if="hasError">
-                <p class="my-2 text-danger">
-                    {{ firstError }}
-                </p>
             </div>
 
         </template>
@@ -31,10 +25,6 @@
         mixins: [FormField, HandlesValidationErrors, HasOptions, CanToggle],
 
         props: ['resourceName', 'resourceId', 'field'],
-
-        mounted() {
-            !this.stacked && this.fixAlignment();
-        },
 
         computed: {
             rawValue() {
@@ -55,7 +45,11 @@
                     return this.value = this.field.value;
                 }
 
-                return this.value = this.field.default;
+				if (this.field.hasOwnProperty('default')) {
+					return this.value = this.field.default;
+				}
+
+				return this.value = ''
             },
 
             /**
@@ -64,17 +58,6 @@
             fill(formData) {
                 const value = this.value !== null ? this.value : this.field.default;
                 formData.append(this.field.attribute, value);
-            },
-
-            /**
-             * Nova doesn't currently allow for modification of the wrapper components
-             * so we'll crudely use the vue api to add the classes to fix the alignment.
-             */
-            fixAlignment() {
-                const container = this.$refs.row.$el.lastChild;
-
-                container.classList.add('flex');
-                container.classList.add('items-center');
             },
 
         }
