@@ -17,7 +17,6 @@ class FieldServiceProvider extends ServiceProvider
     {
         Nova::serving(function (ServingNova $event) {
             Nova::script('radio-field', __DIR__.'/../dist/js/field.js');
-            Nova::style('radio-field', __DIR__.'/../dist/css/field.css');
         });
     }
 
